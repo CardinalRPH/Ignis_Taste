@@ -56,7 +56,7 @@ document.querySelector('#nav-icon3').addEventListener('keypress', (e) => {
     }
 });
 
-document.getElementById('jumbotron').style.backgroundImage = "url(./public/images/hero-image_2.jpg)";
+document.getElementById('jumbotron').style.backgroundImage = "url(./public/images/heros/hero-image_2.jpg)";
 
 window.addEventListener('scroll', () => {
     const mynav = document.querySelector('nav');

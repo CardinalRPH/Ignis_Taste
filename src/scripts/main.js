@@ -26,40 +26,10 @@ document.querySelector('#nav-icon3').addEventListener('click', () => {
     }
 });
 
-document.querySelector('#nav-icon3').addEventListener('keypress', (e) => {
-    if (e.key === "Enter") {
-        if (document.querySelector('#nav-icon3').classList.contains('open')) {
-            document.querySelector('.skip-link').classList.remove('none');
-        } else {
-            document.querySelector('.skip-link').classList.add('none');
-        }
-        document.querySelector('#nav-icon3').classList.toggle('open');
-        document.querySelector('#drawer').classList.toggle('open');
-        document.querySelector('body').classList.toggle('open');
-        document.querySelector('main').classList.toggle('open');
-        if (window.scrollY <= document.querySelector('nav').offsetHeight) {
-            for (let i = 0; i < document.querySelectorAll('#nav-icon3 span').length; i++) {
-                if (document.querySelectorAll('#nav-icon3 span')[i].classList.contains('scroll-black-bg')) {
-                    document.querySelectorAll('#nav-icon3 span')[i].classList.remove('scroll-black-bg');
-                } else {
-                    document.querySelectorAll('#nav-icon3 span')[i].classList.add('scroll-black-bg');
-                }
-            }
-            for (let i = 0; i < document.querySelectorAll('.aClass').length; i++) {
-                if (document.querySelectorAll('.aClass')[i].classList.contains('scroll-black')) {
-                    document.querySelectorAll('.aClass')[i].classList.remove('scroll-black');
-                } else {
-                    document.querySelectorAll('.aClass')[i].classList.add('scroll-black');
-                }
-            }
-        }
-    }
-});
-
 document.getElementById('jumbotron').style.backgroundImage = "url(./public/images/heros/hero-image_2.jpg)";
+const mynav = document.querySelector('nav');
 
 window.addEventListener('scroll', () => {
-    const mynav = document.querySelector('nav');
     if (mynav !== null) {
         if (window.scrollY > mynav.offsetHeight) {
             mynav.classList.add('scroll');
@@ -97,6 +67,14 @@ window.addEventListener('resize', () => {
         document.querySelector('#drawer').classList.remove('open');
         document.querySelector('body').classList.remove('open');
         document.querySelector('main').classList.remove('open');
+    }
+    if (window.scrollY <= mynav.offsetHeight) {
+        for (let i = 0; i < document.querySelectorAll('.aClass').length; i++) {
+            document.querySelectorAll('.aClass')[i].classList.remove('scroll-black');
+        }
+        for (let i = 0; i < document.querySelectorAll('#nav-icon3 span').length; i++) {
+            document.querySelectorAll('#nav-icon3 span')[i].classList.remove('scroll-black-bg');
+        }
     }
 });
 

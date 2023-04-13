@@ -16,7 +16,10 @@ class CardPost extends HTMLElement {
                             alt="${this.alt}">
                     </div>
                     <div class="card-body">
-                        <h3>Ratting : ${this.ratting}</h3>
+                        <div class="the-rtg">
+                            <h3>Rating : &nbsp;</h3>
+                            <h3>${this.ratting}</h3>
+                        </div>
                         <a href="#">
                             <h2>${this.food}</h2>
                         </a>

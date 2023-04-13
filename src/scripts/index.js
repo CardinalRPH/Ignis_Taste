@@ -3,6 +3,7 @@ import './main.js';
 import './elements/card-post.js';
 
 import '../public/images/logo1.png';
+import '../public/images/icon.png'
 
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';

@@ -56,10 +56,6 @@ document.querySelector('#nav-icon3').addEventListener('keypress', (e) => {
     }
 });
 
-document.querySelector('#drawer').addEventListener('blur', () => {
-    console.log("yay");
-})
-
 document.getElementById('jumbotron').style.backgroundImage = "url(./public/images/hero-image_2.jpg)";
 
 window.addEventListener('scroll', () => {
@@ -106,13 +102,11 @@ window.addEventListener('resize', () => {
 
 
 import data from '../DATA.json';
-console.log(data);
 
 for (let i in data.restaurants) {
     document.querySelector('#grid-container-1').innerHTML += `
     <card-post
                     src="${data.restaurants[i].pictureId}"
                     alt="" food="${data.restaurants[i].name}" ratting="${data.restaurants[i].rating}" city="${data.restaurants[i].city}" desc="${data.restaurants[i].description}"></card-post>
-    `
-    console.log(i);
+    `;
 }

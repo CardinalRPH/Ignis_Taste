@@ -326,6 +326,10 @@ main {
   overflow: hidden;
 }
 
+.started {
+  color: #ffc420;;
+}
+
 .the-rtg {
   display: flex;
   align-items: center;
@@ -333,14 +337,8 @@ main {
 
 .the-rtg h3 {
   margin-top: 0;
-}
-
-.the-rtg h3:nth-child(2) {
-  color:rgb(240, 240, 240);
-  background-color: #f90;
-  border-radius: 5px;
-  padding: .5em;
-  /* min-width: 30px; */
+  margin-bottom: 0;
+  margin-right: 0.5em;
 }
 
 .my-5 {

@@ -1,6 +1,7 @@
 import '../styles/main.css';
 import './main.js';
 import './elements/card-post.js';
+import './elements/rating-score.js'
 
 import '../public/images/logo1.png';
 import '../public/images/icon.png'

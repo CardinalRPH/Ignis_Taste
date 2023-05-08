@@ -1,3 +1,5 @@
+import { get_all_data } from './globals/data';
+
 document.querySelector('#nav-icon3').addEventListener('click', () => {
     if (document.querySelector('#nav-icon3').classList.contains('open')) {
         document.querySelector('.skip-link').classList.remove('none');
@@ -78,13 +80,44 @@ window.addEventListener('resize', () => {
     }
 });
 
+//old
+// import data from '../DATA.json';
 
-import data from '../DATA.json';
+// for (let i in data.restaurants) {
+//     document.querySelector('#grid-container-1').innerHTML += `
+//     <card-post
+//                     src="${data.restaurants[i].pictureId}"
+//                     alt="" food="${data.restaurants[i].name}" ratting="${data.restaurants[i].rating}" city="${data.restaurants[i].city}" desc="${data.restaurants[i].description}"></card-post>
+//     `;
+// }
+//end old
 
-for (let i in data.restaurants) {
-    document.querySelector('#grid-container-1').innerHTML += `
-    <card-post
-                    src="${data.restaurants[i].pictureId}"
-                    alt="" food="${data.restaurants[i].name}" ratting="${data.restaurants[i].rating}" city="${data.restaurants[i].city}" desc="${data.restaurants[i].description}"></card-post>
-    `;
+
+const getAllData = () => {
+    get_all_data().then((data) => {
+        if (data.restaurants.length !=0) {
+            homeBuilder(data);
+        } else {
+            // is_null();
+        }
+    }).catch((error) => {
+        console.log(error);
+        // let cuserror = new ErrorHandler("Api can't Load Character Query");
+        // throw cuserror;
+    });
 }
+
+const homeBuilder = (data) => {
+    for (let i in data.restaurants) {
+        document.querySelector('#grid-container-1').innerHTML += `
+        <card-post
+                        src="${data.restaurants[i].pictureId}"
+                        alt="" food="${data.restaurants[i].name}" rating="${data.restaurants[i].rating}" city="${data.restaurants[i].city}" desc="${data.restaurants[i].description}"> res-id="${data.restaurants[i].id}"</card-post>
+        `;
+    }
+}
+
+window.addEventListener('load', () => {
+    getAllData();
+});
+

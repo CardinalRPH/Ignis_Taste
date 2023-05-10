@@ -6,9 +6,8 @@ class CardPost extends HTMLElement {
         this.rating = this.getAttribute('rating') || null;
         this.city = this.getAttribute('city') || null;
         this.desc = this.getAttribute('desc') || null;
-        this.ResId = this.getAttribute('res-id') || null;
-
-
+        this.resId = this.getAttribute('resId') || null;
+        
         this.innerHTML = `
         <div class="card">
                     <div class="card-img">
@@ -21,7 +20,7 @@ class CardPost extends HTMLElement {
                         <h3>${this.rating}</h3>
                             <rating-score value=${this.rating}></rating-score>
                         </div>
-                        <a href="#">
+                        <a href="/#/detail/${this.resId}">
                             <h2>${this.food}</h2>
                         </a>
                         <div class="card-text">

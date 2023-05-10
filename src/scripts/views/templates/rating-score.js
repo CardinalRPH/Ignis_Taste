@@ -1,7 +1,6 @@
 class RatingScore extends HTMLElement {
     connectedCallback() {
         this.value = this.getAttribute('value') || null;
-
         let roundedNumber = Math.round(this.value);
         let elements = '';
 

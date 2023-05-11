@@ -431,7 +431,7 @@ footer .container a button:focus {
 .warpper-out {
   width: 100%;
   height: 100%;
-  margin-top: -2.5em;
+  margin-top: -3.2em;
   position: relative;
 }
 
@@ -446,9 +446,9 @@ footer .container a button:focus {
 
 .tab {
   cursor: pointer;
-  padding: 10px 20px;
+  padding: 15px 25px;
   margin: 0px 2px;
-  background: #32557f;
+  background:#ebaf0a;
   display: inline-block;
   color: #fff;
   border-radius: 3px 3px 0px 0px;
@@ -535,7 +535,7 @@ footer .container a button:focus {
 #three:checked ~ .tabs #three-tab {
   background: #fff;
   color: #000;
-  border-top: 3px solid #32557f;
+  border-top: 3px solid #ebaf0a;
 }
 
 #two-panel {
@@ -650,6 +650,10 @@ footer .container a button:focus {
   margin-top: 8em !important;
 }
 
+.pb-3 {
+  padding-bottom: 1em;
+}
+
 /* responsive */
 
 @media screen and (max-width: 499px) {
@@ -707,6 +711,30 @@ footer .container a button:focus {
   #drawer.open {
     transform: translateX(0);
     overflow-y: auto;
+  }
+
+  #two-panel {
+    flex-direction: column;
+  }
+
+  .left-menu, .right-menu {
+    width: 100%;
+  }
+
+  .left-menu ul, .right-menu ul {
+    padding: 0;
+  }
+  
+  .left-menu {
+    border-right: none;
+    border-bottom: #000 solid 1px;
+    margin-bottom: 0.25em;
+  }
+
+  .right-menu {
+    margin-top: 0.25em;
+    border-left: none;
+    border-top: #000 solid 1px;
   }
 }
 

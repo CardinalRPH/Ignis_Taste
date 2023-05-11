@@ -2,7 +2,7 @@ import Database from '../../data/restaurantDB';
 const Favorite = {
 	async render() {
 		return `
-    <div class="container my-5 mt-8e text-center" id="post-contain">
+    <div class="container my-5 mt-8e text-center pb-3" id="post-contain">
         <h1 class="post-title">Favorite</h1>
         <div class="grid-container" id="grid-container-1">
         </div>

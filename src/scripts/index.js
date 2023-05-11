@@ -9,13 +9,16 @@ import './data/restaurantData.js';
 import App from './views/app.js';
 
 import '../public/images/logo1.png';
-import '../public/images/icon.png';
+import '../public/icons/favicon.png';
 import '../public/images/hero-image_2.jpg';
 
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
+
+
+import swRegister from './utils/sw-register';
 
 
 
@@ -29,4 +32,5 @@ window.addEventListener('hashchange', () => {
 
 window.addEventListener('load', () => {
     app.renderPage();
+    swRegister();
 });

@@ -1,11 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './src/scripts/index.js',
+    entry: {
+        app: path.resolve(__dirname, 'src/scripts/index.js'),
+        sw: path.resolve(__dirname, 'src/scripts/sw.js'),
+    },
     output: {
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        clean: true,
     },
     module: {
         rules: [
@@ -31,6 +37,20 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/templates/index.html',
             filename: 'index.html'
-        })
+        }),
+
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src/public/'),
+                    to: path.resolve(__dirname, 'dist/'),
+                },
+            ],
+        }),
+
+        // new WorkboxWebpackPlugin.GenerateSW({
+        //     swDest: './sw.bundle.js',
+        // }),
+
     ]
 }

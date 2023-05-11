@@ -1,14 +1,14 @@
 class CardPost extends HTMLElement {
-    connectedCallback() {
-        this.src = this.getAttribute('src') || null;
-        this.alt = this.getAttribute('alt') || null;
-        this.food = this.getAttribute('food') || null;
-        this.rating = this.getAttribute('rating') || null;
-        this.city = this.getAttribute('city') || null;
-        this.desc = this.getAttribute('desc') || null;
-        this.resId = this.getAttribute('resId') || null;
+	connectedCallback() {
+		this.src = this.getAttribute('src') || null;
+		this.alt = this.getAttribute('alt') || null;
+		this.food = this.getAttribute('food') || null;
+		this.rating = this.getAttribute('rating') || null;
+		this.city = this.getAttribute('city') || null;
+		this.desc = this.getAttribute('desc') || null;
+		this.resId = this.getAttribute('resId') || null;
         
-        this.innerHTML = `
+		this.innerHTML = `
         <div class="card">
                     <div class="card-img">
                         <small>City : ${this.city}</small>
@@ -29,7 +29,7 @@ class CardPost extends HTMLElement {
                     </div>
                 </div>
         `;
-    }
+	}
 }
 
 customElements.define('card-post', CardPost);

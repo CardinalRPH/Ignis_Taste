@@ -1,11 +1,10 @@
-import UrlParser from "../../routes/url-parser";
-import { get_detail_data } from "../../data/restaurantData";
-import Database from "../../data/restaurantDB";
-import { async } from "regenerator-runtime";
+import UrlParser from '../../routes/url-parser';
+import { get_detail_data } from '../../data/restaurantData';
+import Database from '../../data/restaurantDB';
 
 const Detail = {
-  async render() {
-    return `
+	async render() {
+		return `
         <div class="container-fluid">
         <div class="jumbotron mini-35" id="jumbotron">
         <div class="jumbotron-body mini-35">
@@ -71,117 +70,117 @@ const Detail = {
     </div>
     <div class="favorite" id="favoriteId" title="Add to Favorite">
     </div>
-        `
-  },
+        `;
+	},
 
-  async afterRender() {
-    const url = UrlParser.parseActiveUrlWithoutCombiner()
+	async afterRender() {
+		const url = UrlParser.parseActiveUrlWithoutCombiner();
 
-    const getDetailData = () => {
-      get_detail_data(url.id).then((data) => {
-        if (data.restaurant != null) {
-          dataBuilder(data);
-        } else {
-          // is_null();
-        }
-      }).catch((error) => {
-        console.log(error);
-        // let cuserror = new ErrorHandler("Api can't Load Character Query");
-        // throw cuserror;
-      });
-    }
+		const getDetailData = () => {
+			get_detail_data(url.id).then((data) => {
+				if (data.restaurant != null) {
+					dataBuilder(data);
+				} else {
+					// is_null();
+				}
+			}).catch((error) => {
+				console.log(error);
+				// let cuserror = new ErrorHandler("Api can't Load Character Query");
+				// throw cuserror;
+			});
+		};
 
-    const dataBuilder = async (data) => {
-      document.getElementById('jumbotron').style.backgroundImage = `url('https://restaurant-api.dicoding.dev/images/large/${data.restaurant.pictureId}')`;
-      document.getElementById('resName').innerHTML = data.restaurant.name;
-      document.getElementById('desc-ov').innerHTML = data.restaurant.description;
+		const dataBuilder = async (data) => {
+			document.getElementById('jumbotron').style.backgroundImage = `url('https://restaurant-api.dicoding.dev/images/large/${data.restaurant.pictureId}')`;
+			document.getElementById('resName').innerHTML = data.restaurant.name;
+			document.getElementById('desc-ov').innerHTML = data.restaurant.description;
       
       
 
-      let categories = '';
-      for (let i in data.restaurant.categories) {
-        if (i != data.restaurant.categories.length - 1) {
-          categories += `${data.restaurant.categories[i].name} | `;
-        } else {
-          categories += data.restaurant.categories[i].name;
-        }
-      }
-      document.getElementById('category-ov').innerHTML = categories;
-      document.getElementById('resLocation').innerHTML = `${data.restaurant.address}, ${data.restaurant.city}`;
+			let categories = '';
+			for (let i in data.restaurant.categories) {
+				if (i != data.restaurant.categories.length - 1) {
+					categories += `${data.restaurant.categories[i].name} | `;
+				} else {
+					categories += data.restaurant.categories[i].name;
+				}
+			}
+			document.getElementById('category-ov').innerHTML = categories;
+			document.getElementById('resLocation').innerHTML = `${data.restaurant.address}, ${data.restaurant.city}`;
 
-      for (let i in data.restaurant.menus.drinks) {
-        document.getElementById('left-menu').innerHTML += `<li>${data.restaurant.menus.drinks[i].name}</li>`;
-      }
-      for (let i in data.restaurant.menus.foods) {
-        document.getElementById('right-menu').innerHTML += `<li>${data.restaurant.menus.foods[i].name}</li>`;
-      }
+			for (let i in data.restaurant.menus.drinks) {
+				document.getElementById('left-menu').innerHTML += `<li>${data.restaurant.menus.drinks[i].name}</li>`;
+			}
+			for (let i in data.restaurant.menus.foods) {
+				document.getElementById('right-menu').innerHTML += `<li>${data.restaurant.menus.foods[i].name}</li>`;
+			}
 
-      document.getElementById('rtValue').innerHTML = data.restaurant.rating;
-      ratingstar(data.restaurant.rating);
+			document.getElementById('rtValue').innerHTML = data.restaurant.rating;
+			ratingstar(data.restaurant.rating);
       
-      for (let i in data.restaurant.customerReviews) {
-        document.getElementById('resReviews').innerHTML += `<comment-post date="${data.restaurant.customerReviews[i].date}" comment="${data.restaurant.customerReviews[i].review}" nameU="${data.restaurant.customerReviews[i].name}"></comment-post>`
-      }
+			for (let i in data.restaurant.customerReviews) {
+				document.getElementById('resReviews').innerHTML += `<comment-post date="${data.restaurant.customerReviews[i].date}" comment="${data.restaurant.customerReviews[i].review}" nameU="${data.restaurant.customerReviews[i].name}"></comment-post>`;
+			}
 
-      let isFav = await Database.getRestaurant(data.restaurant.id);
+			let isFav = await Database.getRestaurant(data.restaurant.id);
       
-      if (isFav) {
-        document.getElementById('favoriteId').innerHTML = '<i class="fa-solid fa-heart"></i>';
-        document.getElementById('favoriteId').title = 'Remove from favorite';
-      } else {
-        document.getElementById('favoriteId').innerHTML = '<i class="fa-regular fa-heart"></i>';
-        document.getElementById('favoriteId').title = 'Add to Favorite';
-      }
+			if (isFav) {
+				document.getElementById('favoriteId').innerHTML = '<i class="fa-solid fa-heart"></i>';
+				document.getElementById('favoriteId').title = 'Remove from favorite';
+			} else {
+				document.getElementById('favoriteId').innerHTML = '<i class="fa-regular fa-heart"></i>';
+				document.getElementById('favoriteId').title = 'Add to Favorite';
+			}
       
-      document.getElementById('favoriteId').addEventListener('click', () => {
-        dbSystem(data);
-      });
-    }
+			document.getElementById('favoriteId').addEventListener('click', () => {
+				dbSystem(data);
+			});
+		};
 
-    const ratingstar = (value) => {
-      let roundedNumber = Math.round(value);
-      let elements = '';
+		const ratingstar = (value) => {
+			let roundedNumber = Math.round(value);
+			let elements = '';
 
-      if (roundedNumber <= 5) {
-        for (let i = 0; i < 5; i++) {
-          for (let j = i; j < roundedNumber; j++) {
-            elements += '<span class="fa-solid fa-star started"></span>';
-            i++;
-          }
-          if (i != 5) {
-            elements += '<span class="fa-solid fa-star"></span>';
-          }
-        }
-      }
-      document.getElementById('rtStar').innerHTML = elements;
-    }
+			if (roundedNumber <= 5) {
+				for (let i = 0; i < 5; i++) {
+					for (let j = i; j < roundedNumber; j++) {
+						elements += '<span class="fa-solid fa-star started"></span>';
+						i++;
+					}
+					if (i != 5) {
+						elements += '<span class="fa-solid fa-star"></span>';
+					}
+				}
+			}
+			document.getElementById('rtStar').innerHTML = elements;
+		};
 
-    const dbSystem = async (data) => {
-      let dataFromdb = await Database.getRestaurant(data.restaurant.id);
+		const dbSystem = async (data) => {
+			let dataFromdb = await Database.getRestaurant(data.restaurant.id);
       
-      if (dataFromdb) {
-        document.getElementById('favoriteId').innerHTML = '<i class="fa-regular fa-heart"></i>';
-        document.getElementById('favoriteId').title = 'Add to Favorite';
-        Database.deleteRestaurant(data.restaurant.id);
-      } else {
-        let Restaurantdata = {
-          id: data.restaurant.id,
-          name: data.restaurant.name,
-          desc: data.restaurant.description,
-          picId: data.restaurant.pictureId,
-          city: data.restaurant.city,
-          rating: data.restaurant.rating
-        }
-        Database.addRestaurant(Restaurantdata);
-        document.getElementById('favoriteId').innerHTML = '<i class="fa-solid fa-heart"></i>';
-        document.getElementById('favoriteId').title = 'Remove from favorite';
-      }
-    }
+			if (dataFromdb) {
+				document.getElementById('favoriteId').innerHTML = '<i class="fa-regular fa-heart"></i>';
+				document.getElementById('favoriteId').title = 'Add to Favorite';
+				Database.deleteRestaurant(data.restaurant.id);
+			} else {
+				let Restaurantdata = {
+					id: data.restaurant.id,
+					name: data.restaurant.name,
+					desc: data.restaurant.description,
+					picId: data.restaurant.pictureId,
+					city: data.restaurant.city,
+					rating: data.restaurant.rating
+				};
+				Database.addRestaurant(Restaurantdata);
+				document.getElementById('favoriteId').innerHTML = '<i class="fa-solid fa-heart"></i>';
+				document.getElementById('favoriteId').title = 'Remove from favorite';
+			}
+		};
 
 
-    getDetailData();
+		getDetailData();
 
-  }
-}
+	}
+};
 
 export default Detail;

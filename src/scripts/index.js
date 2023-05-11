@@ -23,14 +23,14 @@ import swRegister from './utils/sw-register';
 
 
 const app = new App({
-    content: document.querySelector('main'),
+	content: document.querySelector('main'),
 });
 
 window.addEventListener('hashchange', () => {
-    app.renderPage();
+	app.renderPage();
 });
 
 window.addEventListener('load', () => {
-    app.renderPage();
-    swRegister();
+	app.renderPage();
+	swRegister();
 });

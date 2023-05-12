@@ -97,6 +97,11 @@ const Detail = {
 		});
 
 		const url = UrlParser.parseActiveUrlWithoutCombiner();
+		const Ndate = new Date().toLocaleDateString('id-ID', {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		});
 
 		const getDetailData = () => {
 			get_detail_data(url.id).then((data) => {
@@ -256,13 +261,19 @@ const Detail = {
 				document.getElementById('loading-load').style.display = 'none';
 				document.getElementById('submitBtn').disabled = false;
 				document.getElementById('error-detail').style.display = 'none';
-				window.location.reload();
+				document.getElementById('resReviews').innerHTML += `<comment-post date="${Ndate}" comment="${obj.review}" nameU="${obj.name}"></comment-post>`;
+				resetfield();
 			}).catch((error) => {
 				document.getElementById('loading-load').style.display = 'none';
 				document.getElementById('submitBtn').disabled = false;
 				document.getElementById('error-detail').style.display = 'block';
 				console.log(error);
 			});
+		};
+
+		const resetfield = () => {
+			document.getElementById('ReviewName').value = '';
+			document.getElementById('myReview').value = '';
 		};
 
 		getDetailData();

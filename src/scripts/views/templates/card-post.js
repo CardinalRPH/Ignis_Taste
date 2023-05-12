@@ -7,7 +7,7 @@ class CardPost extends HTMLElement {
 		this.city = this.getAttribute('city') || null;
 		this.desc = this.getAttribute('desc') || null;
 		this.resId = this.getAttribute('resId') || null;
-        
+
 		this.innerHTML = `
         <div class="card">
                     <div class="card-img">

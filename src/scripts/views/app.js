@@ -11,7 +11,6 @@ class App {
 		const page = routes[url];
 		this._content.innerHTML = await page.render();
 		await page.afterRender();
-   
 	}
 }
 

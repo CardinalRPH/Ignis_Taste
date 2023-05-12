@@ -1,12 +1,13 @@
 import 'regenerator-runtime';
 import '../styles/main.css';
 
-import './main.js';
-import './views/templates/card-post.js';
-import './views/templates/rating-score.js';
-import './views/templates/comment-post.js';
-import './data/restaurantData.js';
-import App from './views/app.js';
+import './main';
+import './views/templates/card-post';
+import './views/templates/rating-score';
+import './views/templates/comment-post';
+import './views/templates/preloader-load';
+import './data/restaurantData';
+import App from './views/app';
 
 import '../public/images/logo1.png';
 import '../public/icons/favicon.png';
@@ -17,10 +18,7 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 
-
 import swRegister from './utils/sw-register';
-
-
 
 const app = new App({
 	content: document.querySelector('main'),

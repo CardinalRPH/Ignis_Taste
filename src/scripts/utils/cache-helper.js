@@ -1,4 +1,4 @@
-import CONFIG from '../globals/config';
+import { CONFIG } from "../globals/config";
 
 const CacheHelper = {
 	async cachingAppShell(requests) {
@@ -21,7 +21,6 @@ const CacheHelper = {
 			return response;
 		}
 		return this._fetchRequest(request);
-
 	},
 	async _openCache() {
 		return caches.open(CONFIG.CACHE_NAME);

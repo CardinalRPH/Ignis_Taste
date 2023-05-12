@@ -1,5 +1,23 @@
 const CONFIG = {
-	CACHE_NAME: new Date().toISOString()
+	BASE_URL: 'https://restaurant-api.dicoding.dev',
+	CACHE_NAME: new Date().toISOString(),
 };
 
-export default CONFIG;
+
+const API_END_POINT = {
+	GET_ALL: `${CONFIG.BASE_URL}/list`,
+	GET_DETAIL: `${CONFIG.BASE_URL}/detail`,
+	POST_REVIEW: `${CONFIG.BASE_URL}/review`,
+};
+
+const GET_SM_IMG = (id) => {
+	return `${CONFIG.BASE_URL}/images/small/${id}`;
+}
+const GET_MD_IMG = (id) => {
+	return `${CONFIG.BASE_URL}/images/medium/${id}`;
+}
+const GET_LG_IMG = (id) => {
+	return `${CONFIG.BASE_URL}/images/large/${id}`;
+}
+
+export { CONFIG, API_END_POINT, GET_LG_IMG, GET_MD_IMG, GET_SM_IMG };

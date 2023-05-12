@@ -26,33 +26,42 @@ const HomePage = {
 	},
 
 	async afterRender() {
+		const skipLink = document.querySelector('.skip-link');
+		const mainContent = document.querySelector('#post-contain');
+
+		skipLink.addEventListener('click', (event) => {
+			event.preventDefault();
+			mainContent.scrollIntoView({ behavior: 'smooth' });
+			skipLink.blur();
+		});
+
 		document.getElementById('jumbotron').style.backgroundImage = 'url(\'../public/images/hero-image_2.jpg\')';
 		const getAllData = () => {
 			get_all_data().then((data) => {
-				if (data.restaurants.length !=0) {
+				if (data.restaurants.length != 0) {
 					homeBuilder(data);
-				} else {
-					// is_null();
 				}
 			}).catch((error) => {
 				console.log(error);
-				// let cuserror = new ErrorHandler("Api can't Load Character Query");
-				// throw cuserror;
 			});
 		};
 
 		const homeBuilder = (data) => {
-			for (let i in data.restaurants) {
-				document.querySelector('#grid-container-1').innerHTML += `
-                <card-post
-                                src="${data.restaurants[i].pictureId}"
-                                alt="" food="${data.restaurants[i].name}" rating="${data.restaurants[i].rating}" city="${data.restaurants[i].city}" desc="${data.restaurants[i].description}" resId="${data.restaurants[i].id}"></card-post>
-                `;
-			}
+			data.restaurants.forEach((item) => {
+				const cardPost = `<card-post
+										src="${item.pictureId}"
+										alt="${item.name}"
+										food="${item.name}"
+										rating="${item.rating}"
+										city="${item.city}"
+										desc="${item.description}"
+										resId="${item.id}"></card-post>`;
+				document.querySelector('#grid-container-1').innerHTML += cardPost;
+			});
 		};
 
 		getAllData();
-	}
+	},
 };
 
 export default HomePage;

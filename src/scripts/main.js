@@ -40,8 +40,7 @@ window.addEventListener('scroll', () => {
 			for (let i = 0; i < document.querySelectorAll('#nav-icon3 span').length; i++) {
 				document.querySelectorAll('#nav-icon3 span')[i].classList.add('scroll-black-bg');
 			}
-		}
-		else {
+		} else {
 			mynav.classList.remove('scroll');
 			document.querySelector('.nav-img').children[0].children[0].classList.remove('scroll');
 			for (let i = 0; i < document.querySelectorAll('.aClass').length; i++) {
@@ -77,5 +76,3 @@ window.addEventListener('resize', () => {
 		}
 	}
 });
-
-

@@ -3,7 +3,7 @@ class commentPost extends HTMLElement {
 		this.date = this.getAttribute('date') || null;
 		this.comment = this.getAttribute('comment') || null;
 		this.nameU = this.getAttribute('nameU') || null;
-        
+
 		this.innerHTML = `
         <div class="container reviewer">
             <div class="top-view-contain">

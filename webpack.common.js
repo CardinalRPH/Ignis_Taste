@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -47,10 +47,19 @@ module.exports = {
                 },
             ],
         }),
+        // new ESLintPlugin()
+
 
         // new WorkboxWebpackPlugin.GenerateSW({
         //     swDest: './sw.bundle.js',
         // }),
 
-    ]
+    ],
+    resolve: {
+        fallback: {
+            "crypto": false,
+            "path": false,
+            
+        }
+    }
 }

@@ -155,59 +155,59 @@ const Detail = {
 			});
 
 			paging();
-			
+
 			document.getElementById('post-form').addEventListener('submit', () => {
-				document.getElementById('loading-load').style.display = "block";
+				document.getElementById('loading-load').style.display = 'block';
 				document.getElementById('submitBtn').disabled = true;
 				postReview(object_builder(url.id, document.getElementById('ReviewName').value, document.getElementById('myReview').value));
 			});
 		};
 
 		const paging = () => {
-			const wrap = document.getElementById("resReviews");
-			const items = wrap.getElementsByTagName("comment-post");
-	
+			const wrap = document.getElementById('resReviews');
+			const items = wrap.getElementsByTagName('comment-post');
+
 			const pageCount = Math.ceil(items.length / 7);
 			let currentPage = 1;
 
-			const showPage =(page) =>{
+			const showPage = (page) => {
 				if (page < 1 || page > pageCount) {
 					return;
 				}
 				currentPage = page;
 				for (let i = 0; i < items.length; i++) {
 					if (i >= (currentPage - 1) * 7 && i < currentPage * 7) {
-						items[i].style.display = "block";
+						items[i].style.display = 'block';
 					} else {
-						items[i].style.display = "none";
+						items[i].style.display = 'none';
 					}
 				}
 				updatePagination();
-			}
+			};
 
 			const updatePagination = () => {
-				const pagination = document.getElementById("pagination");
-				pagination.innerHTML = "";
-	
-				const prevButton = document.createElement("button");
-				prevButton.innerText = "<";
+				const pagination = document.getElementById('pagination');
+				pagination.innerHTML = '';
+
+				const prevButton = document.createElement('button');
+				prevButton.innerText = '<';
 				prevButton.disabled = currentPage === 1;
-				prevButton.addEventListener("click", function () {
+				prevButton.addEventListener('click', () => {
 					showPage(currentPage - 1);
 				});
 				pagination.appendChild(prevButton);
-	
-				const nextButton = document.createElement("button");
-				nextButton.innerText = ">";
-				nextButton.addEventListener("click", function () {
-					let cc = currentPage + 1;
+
+				const nextButton = document.createElement('button');
+				nextButton.innerText = '>';
+				nextButton.addEventListener('click', () => {
+					const cc = currentPage + 1;
 					showPage(cc);
 				});
 				pagination.appendChild(nextButton);
 				nextButton.disabled = currentPage === pageCount;
-			}
+			};
 			showPage(currentPage);
-		}
+		};
 
 		const ratingstar = (value) => {
 			const roundedNumber = Math.round(value);
@@ -219,7 +219,7 @@ const Detail = {
 						elements += '<span class="fa-solid fa-star started"></span>';
 						i++;
 					}
-					if (i != 5) {
+					if (i != 5) { // eslint-disable-line no-unused-vars
 					}
 					elements += '<span class="fa-solid fa-star"></span>';
 				}
@@ -249,30 +249,21 @@ const Detail = {
 			}
 		};
 
-		const object_builder = (id, name, review) => {
-			return { id, name, review };
-		}
+		const object_builder = (id, name, review) => ({ id, name, review });
 
 		const postReview = (obj) => {
-			post_review(obj).then((data) => {
-				document.getElementById('loading-load').style.display = "none";
+			post_review(obj).then(() => {
+				document.getElementById('loading-load').style.display = 'none';
 				document.getElementById('submitBtn').disabled = false;
 				document.getElementById('error-detail').style.display = 'none';
 				window.location.reload();
 			}).catch((error) => {
-				document.getElementById('loading-load').style.display = "none";
+				document.getElementById('loading-load').style.display = 'none';
 				document.getElementById('submitBtn').disabled = false;
 				document.getElementById('error-detail').style.display = 'block';
 				console.log(error);
 			});
-		}
-
-		const resetBuilder = () => {
-			document.getElementById('left-menu').innerHTML = '';
-			document.getElementById('right-menu').innerHTML = '';
-			document.getElementById('resReviews').innerHTML = '';
-
-		}
+		};
 
 		getDetailData();
 	},

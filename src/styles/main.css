@@ -661,29 +661,29 @@ footer .container a button:focus {
   border: none;
 }
 
-.favorite {
+.favorite, #outer-like {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color:#F0F0F0;
   position: fixed;
   right: 3em;
   bottom: 3em;
+  background-color:#F0F0F0;
   cursor: pointer;
   transition: .25s;
 }
 
-.favorite svg {
+#outer-like svg {
   width: 30px;
   height: 30px;
   filter: invert(46%) sepia(55%) saturate(5609%) hue-rotate(323deg) brightness(98%) contrast(95%);
   transition: .5s;
 }
 
-.favorite:hover {
+#outer-like:hover {
   transform: scale(1.2);
 }
 

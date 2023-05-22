@@ -1,3 +1,4 @@
+import { GET_MD_IMG } from '../../globals/config';
 class CardPost extends HTMLElement {
 	connectedCallback() {
 		this.src = this.getAttribute('src') || null;
@@ -12,7 +13,7 @@ class CardPost extends HTMLElement {
         <div class="card">
                     <div class="card-img">
                         <small>City : ${this.city}</small>
-                        <img src="https://restaurant-api.dicoding.dev/images/large/${this.src}"
+                        <img class="lazyload" data-src="${GET_MD_IMG(this.src)}"
                             alt="${this.alt}">
                     </div>
                     <div class="card-body">

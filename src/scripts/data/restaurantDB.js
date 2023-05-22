@@ -1,4 +1,5 @@
 import { openDB } from 'idb';
+import { async } from 'regenerator-runtime';
 
 const DATABASE_NAME = 'restaurant-fav';
 const OBJECT_STORE_NAME = 'restaurant';

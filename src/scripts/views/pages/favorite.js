@@ -26,17 +26,23 @@ const Favorite = {
 		}).catch((error) => console.log(error));
 
 		const favBuilder = (data) => {
-			data.forEach((item) => {
-				const cardPost = `<card-post
-										src="${item.picId}"
-										alt="${item.name}"
-										food="${item.name}"
-										rating="${item.rating}"
-										city="${item.city}"
-										desc="${item.desc}"
-										resId="${item.id}"></card-post>`;
-				document.querySelector('#grid-container-1').innerHTML += cardPost;
-			});
+			if (data.length <= 0) {
+				document.querySelector('#grid-container-1').innerHTML = 'No Restaurant Favorited';
+			} else {
+				document.querySelector('#grid-container-1').innerHTML = '';
+				data.forEach((item) => {
+					const cardPost = `<card-post
+											src="${item.picId}"
+											alt="${item.name}"
+											food="${item.name}"
+											rating="${item.rating}"
+											city="${item.city}"
+											desc="${item.desc}"
+											resId="${item.id}" id="favContent"></card-post>`;
+					document.querySelector('#grid-container-1').innerHTML += cardPost;
+				});
+			}
+			
 		};
 	},
 };

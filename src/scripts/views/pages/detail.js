@@ -1,6 +1,8 @@
 import UrlParser from '../../routes/url-parser';
 import { get_detail_data, post_review } from '../../data/restaurantData';
 import Database from '../../data/restaurantDB';
+import Like_Button from '../../utils/Init_like_dislike_btn';
+import { GET_LG_IMG } from '../../globals/config';
 
 const Detail = {
 	async render() {
@@ -114,7 +116,7 @@ const Detail = {
 		};
 
 		const dataBuilder = async (data) => {
-			document.getElementById('jumbotron').style.backgroundImage = `url('https://restaurant-api.dicoding.dev/images/large/${data.restaurant.pictureId}')`;
+			document.getElementById('jumbotron').style.backgroundImage = `url('${GET_LG_IMG(data.restaurant.pictureId)}')`;
 			document.getElementById('resName').innerHTML = data.restaurant.name;
 			document.getElementById('desc-ov').innerHTML = data.restaurant.description;
 
@@ -144,21 +146,7 @@ const Detail = {
 				const commentPost = `<comment-post date="${review.date}" comment="${review.review}" nameU="${review.name}"></comment-post>`;
 				document.getElementById('resReviews').innerHTML += commentPost;
 			});
-
-			const isFav = await Database.getRestaurant(data.restaurant.id);
-
-			if (isFav) {
-				document.getElementById('favoriteId').innerHTML = '<i class="fa-solid fa-heart"></i>';
-				document.getElementById('favoriteId').title = 'Remove from favorite';
-			} else {
-				document.getElementById('favoriteId').innerHTML = '<i class="fa-regular fa-heart"></i>';
-				document.getElementById('favoriteId').title = 'Add to Favorite';
-			}
-
-			document.getElementById('favoriteId').addEventListener('click', () => {
-				dbSystem(data);
-			});
-
+			forLike(data);
 			paging();
 
 			document.getElementById('post-form').addEventListener('submit', () => {
@@ -167,6 +155,20 @@ const Detail = {
 				postReview(object_builder(url.id, document.getElementById('ReviewName').value, document.getElementById('myReview').value));
 			});
 		};
+
+		const forLike = (data) => {
+			Like_Button.init({
+				LContainer: document.getElementById('favoriteId'),
+				data: {
+					id: data.restaurant.id,
+					name: data.restaurant.name,
+					desc: data.restaurant.description,
+					picId: data.restaurant.pictureId,
+					city: data.restaurant.city,
+					rating: data.restaurant.rating
+				}
+			})
+		}
 
 		const paging = () => {
 			const wrap = document.getElementById('resReviews');
@@ -230,28 +232,6 @@ const Detail = {
 				}
 			}
 			document.getElementById('rtStar').innerHTML = elements;
-		};
-
-		const dbSystem = async (data) => {
-			const dataFromdb = await Database.getRestaurant(data.restaurant.id);
-
-			if (dataFromdb) {
-				document.getElementById('favoriteId').innerHTML = '<i class="fa-regular fa-heart"></i>';
-				document.getElementById('favoriteId').title = 'Add to Favorite';
-				Database.deleteRestaurant(data.restaurant.id);
-			} else {
-				const Restaurantdata = {
-					id: data.restaurant.id,
-					name: data.restaurant.name,
-					desc: data.restaurant.description,
-					picId: data.restaurant.pictureId,
-					city: data.restaurant.city,
-					rating: data.restaurant.rating,
-				};
-				Database.addRestaurant(Restaurantdata);
-				document.getElementById('favoriteId').innerHTML = '<i class="fa-solid fa-heart"></i>';
-				document.getElementById('favoriteId').title = 'Remove from favorite';
-			}
 		};
 
 		const object_builder = (id, name, review) => ({ id, name, review });

@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -82,12 +83,10 @@ module.exports = {
                 }),
             ],
         }),
+        new WorkboxWebpackPlugin.GenerateSW({
+            swDest: './swbx.bundle.js',
+        }),
         // new ESLintPlugin()
-
-
-        // new WorkboxWebpackPlugin.GenerateSW({
-        //     swDest: './sw.bundle.js',
-        // }),
 
     ],
     resolve: {

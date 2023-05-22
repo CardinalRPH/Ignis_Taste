@@ -33,7 +33,7 @@
         "no-plusplus":0,
         "eqeqeq": "off",
         "no-param-reassign": ["error", { "props": false }],
-        "camelcase": ["error", {"allow": ["get_all_data", "get_detail_data", "post_review", "object_builder"]}],
+        "camelcase": ["error", {"allow": ["get_all_data", "get_detail_data", "post_review", "object_builder", "Like_Button"]}],
         "no-underscore-dangle": 0,
         "no-use-before-define": ["error", { "variables": false }],
         "padded-blocks": ["error", "never"],

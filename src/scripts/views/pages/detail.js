@@ -1,6 +1,5 @@
 import UrlParser from '../../routes/url-parser';
 import { get_detail_data, post_review } from '../../data/restaurantData';
-import Database from '../../data/restaurantDB';
 import Like_Button from '../../utils/Init_like_dislike_btn';
 import { GET_LG_IMG } from '../../globals/config';
 
@@ -165,10 +164,10 @@ const Detail = {
 					desc: data.restaurant.description,
 					picId: data.restaurant.pictureId,
 					city: data.restaurant.city,
-					rating: data.restaurant.rating
-				}
-			})
-		}
+					rating: data.restaurant.rating,
+				},
+			});
+		};
 
 		const paging = () => {
 			const wrap = document.getElementById('resReviews');

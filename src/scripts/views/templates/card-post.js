@@ -1,4 +1,5 @@
 import { GET_MD_IMG } from '../../globals/config';
+
 class CardPost extends HTMLElement {
 	connectedCallback() {
 		this.src = this.getAttribute('src') || null;

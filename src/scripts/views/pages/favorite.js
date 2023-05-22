@@ -42,7 +42,6 @@ const Favorite = {
 					document.querySelector('#grid-container-1').innerHTML += cardPost;
 				});
 			}
-			
 		};
 	},
 };

@@ -35,7 +35,10 @@ const HomePage = {
 			skipLink.blur();
 		});
 
-		document.getElementById('jumbotron').style.backgroundImage = 'url(\'../public/images/hero-image_2.jpg\')';
+		document.getElementById('jumbotron').style.backgroundImage = `image-set(
+			url(\'../public/images/hero-image_2-small.jpg\') 1x,
+			url(\'../public/images/hero-image_2-large.jpg\') 2x
+		)`;
 		const getAllData = () => {
 			get_all_data().then((data) => {
 				if (data.restaurants.length != 0) {

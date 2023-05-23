@@ -12,6 +12,8 @@ import App from './views/app';
 import '../public/images/logo1.png';
 import '../public/icons/favicon.png';
 import '../public/images/hero-image_2.jpg';
+import '../public/images/hero-image_2-small.jpg';
+import '../public/images/hero-image_2-large.jpg';
 
 import '@fortawesome/fontawesome-free/js/fontawesome';
 import '@fortawesome/fontawesome-free/js/solid';

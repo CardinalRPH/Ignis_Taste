@@ -85,6 +85,20 @@ module.exports = {
         }),
         new WorkboxWebpackPlugin.GenerateSW({
             swDest: './swbx.bundle.js',
+            skipWaiting: true,
+            clientsClaim: true,
+            runtimeCaching: [
+                {
+                    urlPattern: new RegExp("^https://restaurant-api.dicoding.dev/"),
+                    handler: "StaleWhileRevalidate",
+                    options: {
+                        cacheName: "API-Cache",
+                        cacheableResponse: {
+                            statuses: [0, 200]
+                        }
+                    }
+                }
+            ]
         }),
         // new ESLintPlugin()
 

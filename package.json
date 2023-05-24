@@ -12,7 +12,8 @@
     "serve": "http-server dist",
     "karma-test": "karma start",
     "e2e": "codeceptjs run --steps",
-    "build-image": "node sharp.js"
+    "build-image": "node sharp.js",
+    "build-serve": "npm run build && npm run serve"
   },
   "author": "Rayhan Febriyan Saputra",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
     "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
     "codeceptjs": "^3.4.1",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",

@@ -35,10 +35,21 @@ const HomePage = {
 			skipLink.blur();
 		});
 
-		document.getElementById('jumbotron').style.backgroundImage = `image-set(
-			url(\'../public/images/hero-image_2-small.jpg\') 1x,
-			url(\'../public/images/hero-image_2-large.jpg\') 2x
-		)`;
+		const resize_bg = () => {
+			if (window.innerWidth < 700) {
+				document.getElementById('jumbotron').style.backgroundImage = "url('../public/images/hero-image_2-small.jpg')";
+			} else if (window.innerWidth >= 700) {
+				document.getElementById('jumbotron').style.backgroundImage = "url('../public/images/hero-image_2-large.jpg')";
+			} else {
+				// Default jika tidak memenuhi kriteria
+				document.getElementById('jumbotron').style.backgroundImage = "url('default-image.png')";
+			}
+		}
+
+		// document.getElementById('jumbotron').style.backgroundImage = `image-set(
+		// 	url('../public/images/hero-image_2-small.jpg') 1x,
+		// 	url('../public/images/hero-image_2-large.jpg') 2x
+		// )`;
 		const getAllData = () => {
 			get_all_data().then((data) => {
 				if (data.restaurants.length != 0) {
@@ -62,7 +73,8 @@ const HomePage = {
 				document.querySelector('#grid-container-1').innerHTML += cardPost;
 			});
 		};
-
+		window.addEventListener('resize', resize_bg);
+		resize_bg();
 		getAllData();
 	},
 };

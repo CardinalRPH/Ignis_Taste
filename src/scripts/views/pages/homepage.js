@@ -37,14 +37,14 @@ const HomePage = {
 
 		const resize_bg = () => {
 			if (window.innerWidth < 700) {
-				document.getElementById('jumbotron').style.backgroundImage = "url('../public/images/hero-image_2-small.jpg')";
+				document.getElementById('jumbotron').style.backgroundImage = 'url(\'../public/images/hero-image_2-small.jpg\')';
 			} else if (window.innerWidth >= 700) {
-				document.getElementById('jumbotron').style.backgroundImage = "url('../public/images/hero-image_2-large.jpg')";
+				document.getElementById('jumbotron').style.backgroundImage = 'url(\'../public/images/hero-image_2-large.jpg\')';
 			} else {
 				// Default jika tidak memenuhi kriteria
-				document.getElementById('jumbotron').style.backgroundImage = "url('default-image.png')";
+				document.getElementById('jumbotron').style.backgroundImage = 'url(\'default-image.png\')';
 			}
-		}
+		};
 
 		// document.getElementById('jumbotron').style.backgroundImage = `image-set(
 		// 	url('../public/images/hero-image_2-small.jpg') 1x,
